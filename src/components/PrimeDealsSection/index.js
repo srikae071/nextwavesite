@@ -1,5 +1,6 @@
 import { Component } from "react";
 import Cookies from "js-cookie";
+// import Loader from "react-loader-spinner";
 import * as Loader from "react-loader-spinner";
 
 import ProductCard from "../ProductCard";
@@ -51,8 +52,7 @@ class PrimeDealsSection extends Component {
         primeDeals: updatedData,
         apiStatus: apiStatusConstants.success,
       });
-    }
-    if (response.status === 401) {
+    } else if (response.status === 401) {
       this.setState({
         apiStatus: apiStatusConstants.failure,
       });
@@ -61,7 +61,6 @@ class PrimeDealsSection extends Component {
 
   renderPrimeDealsList = () => {
     const { primeDeals } = this.state;
-
     return (
       <div>
         <h1 className="primedeals-list-heading">Exclusive Prime Deals</h1>
@@ -77,14 +76,14 @@ class PrimeDealsSection extends Component {
   renderPrimeDealsFailureView = () => (
     <img
       src="https://assets.ccbp.in/frontend/react-js/exclusive-deals-banner-img.png"
-      alt="register prime"
-      className="register-prime-img"
+      alt="Register Prime"
+      className="register-prime-image"
     />
   );
 
   renderLoadingView = () => (
-    <div className="primedeals-loader-container">
-      <Loader.TailSpin color="#0b69ff" height={50} width={80} />
+    <div className="products-loader-container">
+      <Loader.Circles type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </div>
   );
 

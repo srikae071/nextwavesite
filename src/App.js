@@ -1,26 +1,25 @@
-// import { Route, Switch, Redirect } from "react-router-dom";
-import { BrowserRouter as Route, Routes } from "react-router-dom";
-// import { Switch, Route } from "react-router-dom";
-// import { Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import LoginForm from "./components/LoginForm";
 import Home from "./components/Home";
 import Products from "./components/Products";
 import Cart from "./components/Cart";
 import NotFound from "./components/NotFound";
-// import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 import "./App.css";
-
+// chang
 const App = () => (
-  <Routes>
-    <Route exact path="/login" element={LoginForm} />
-    <Route exact path="/" element={Home} />
-    <Route exact path="/products" element={Products} />
-    <Route exact path="/cart" element={Cart} />
-    <Route path="/not-found" element={NotFound} />
-    {/* <Navigate to="not-found" /> */}
-  </Routes>
+  <BrowserRouter>
+    <Switch>
+      <Route exact path="/login" component={LoginForm} />
+      <ProtectedRoute exact path="/" component={Home} />
+      <ProtectedRoute exact path="/products" component={Products} />
+      <ProtectedRoute exact path="/cart" component={Cart} />
+      <Route path="/not-found" component={NotFound} />
+      <Redirect to="not-found" />
+    </Switch>
+  </BrowserRouter>
 );
 
 export default App;

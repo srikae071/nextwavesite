@@ -1,6 +1,5 @@
 import { Component } from "react";
 
-// import Loader from "react-loader-spinner";
 import * as Loader from "react-loader-spinner";
 import Cookies from "js-cookie";
 
@@ -156,20 +155,26 @@ class AllProductsSection extends Component {
 
   renderLoader = () => (
     <div className="products-loader-container">
-      <Loader.TailSpin color="#00BFFF" height={550} width={80} />
+      <Loader.Bars type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </div>
   );
 
   clickedCatogery = (gotvalue) => {
-    // this.setState({activeCatogery: gotvalue, SearchInput: ''}, this.getProducts)
-    console.log("all products called from carogries button");
+    this.setState(
+      { activeCatogery: gotvalue, SearchInput: "" },
+      this.getProducts
+    );
+    console.log("all products called");
   };
 
   // TODO: Add failure view
 
-  Ratingssssss = () => (gotva) => {
-    // this.setState({ActiveRating: 'fdlg', SearchInput: ''}, this.getProducts)
-    console.log("all products called from rating buttom");
+  clickRating = (gotrating) => {
+    this.setState(
+      { ActiveRating: gotrating, SearchInput: "" },
+      this.getProducts
+    );
+    console.log("all products called");
   };
 
   render() {
@@ -184,7 +189,7 @@ class AllProductsSection extends Component {
           clickedCatogery={this.clickedCatogery}
           ratingsList={ratingsList}
           ActiveRating={ActiveRating}
-          Ratingssssss={this.Ratingssssss}
+          clickRating={this.clickRating}
         />
 
         {isLoading ? this.renderLoader() : this.renderProductsList()}
